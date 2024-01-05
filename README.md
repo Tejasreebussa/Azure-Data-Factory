@@ -9,12 +9,12 @@
 
 To ensure that files with a specified prefix are ingested into ADLS, the following steps are implemented in Azure Data Factory:
 
-Create Linked Service to connect to the on-premises virtual machine using a Self-Hosted Integration Runtime.
-Create Linked Service for connecting to ADLS.
-Create Dataset for the CSV files located in the file system of the on-premises virtual machine.
-Create Dataset for the destination CSV files in ADLS, parameterized with AdlsFilePath to allow dynamic folder path selection by the user at runtime.
-Create a pipeline that performs the following actions:
-A Metadata Activity retrieves all child items in the folder specified by the on-premises Dataset (created in step 3).
+- Create Linked Service to connect to the on-premises virtual machine using a Self-Hosted Integration Runtime.
+- Create Linked Service for connecting to ADLS.
+- Create Dataset for the CSV files located in the file system of the on-premises virtual machine.
+- Create Dataset for the destination CSV files in ADLS, parameterized with AdlsFilePath to allow dynamic folder path selection by the user at runtime.
+- Create a pipeline that performs the following actions:
+- A Metadata Activity retrieves all child items in the folder specified by the on-premises Dataset (created in step 3).
 
 <p align="center">
   <img src="assets/adf1.PNG" />
