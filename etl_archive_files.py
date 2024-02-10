@@ -27,3 +27,29 @@ def transform_load_files(source_path):
                 .saveAsTable(table_name)
   
 
+# COMMAND ----------
+
+import datetime
+import pytz
+
+def archive_files(source_folder_loc,archive_folder_loc):
+  to_archive_files = dbutils.fs.ls(source_folder_loc)
+  num_files = 0
+  files_transfered = []
+  for file in to_archive_files:
+    source_path = file.path
+    archive_path = file.path.replace(source_folder_loc,archive_folder_loc)
+    dbutils.fs.mv(source_path,archive_path)
+    num_files += 1
+    files_transfered += [source_path[source_path.rfind("/")+1:]]
+  print("Archived {} files at time : {}".format(num_files,datetime.datetime.now() \
+                                                .astimezone(tz=pytz.timezone('US/Central'))))
+  return files_transfered
+
+# COMMAND ----------
+
+transform_load_files(source_folder_loc)
+
+# COMMAND ----------
+
+archive_files(source_folder_loc,archive_folder_loc)
